@@ -13,4 +13,4 @@ undeploy-stage:
 integration-tests-qa:
 	(cd tests-postman && make test-qa || exit 1)
 
-pipeline: deploy-qa integration-tests-qa undeploy-qa deploy-stage
+pipeline: deploy-qa integration-tests-qa undeploy-qa
