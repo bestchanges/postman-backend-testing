@@ -6,8 +6,3 @@ before_script:
   - make run-local
 script:
   - cd tests-postman && make test-local
-#deploy:
-#  provider: heroku
-#  api_key:
-#    secure: "YOUR ENCRYPTED API KEY"
-#  app: postman-backend-testing-sample
