@@ -552,7 +552,7 @@
 									"",
 									"pm.test(\"id equals requested\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    expected_value = pm.environment.get(\"todolist_id\");",
+									"    expected_value = pm.environment.get(\"item_id\");",
 									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
 									"});",
 									"",
@@ -749,25 +749,25 @@
 	],
 	"variable": [
 		{
-			"id": "4788d5c0-09df-4cf2-ac68-506fd15168b1",
+			"id": "93a28629-db36-407f-8995-865c6ee9b902",
 			"key": "server_url",
 			"value": "http://localhost:8807",
 			"type": "string"
 		},
 		{
-			"id": "d93ce0da-56f1-49d6-8d19-114469d2b8ff",
+			"id": "8d82884e-5059-4669-bc38-00da2d81d54a",
 			"key": "todolist_name",
 			"value": "Default todolist",
 			"type": "string"
 		},
 		{
-			"id": "aa77a6d1-8588-40dd-93b0-f488e93ab176",
+			"id": "06fcdcb5-769d-4fbf-b183-146ff4cd9a06",
 			"key": "task_name",
 			"value": "default task",
 			"type": "string"
 		},
 		{
-			"id": "bbfc7682-cfc2-4a14-99be-93b84e9a72ed",
+			"id": "9c9ee903-4a97-45a1-9e3f-580e46817e82",
 			"key": "task_is_completed",
 			"value": "false",
 			"type": "string"
