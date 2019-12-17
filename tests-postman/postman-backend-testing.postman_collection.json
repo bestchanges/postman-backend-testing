@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "a4361e5a-5025-4fdd-8c9e-41bb7527a21d",
+		"name": "postman-backend-testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todolist",
+			"item": [
+				{
+					"name": "list todolists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9510dbaf-ca89-4dd4-a33d-976081da7e7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"schema = {",
+									"  \"definitions\": {},",
+									"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+									"  \"$id\": \"http://example.com/root.json\",",
+									"  \"type\": \"array\",",
+									"  \"title\": \"The Root Schema\",",
+									"  \"items\": {",
+									"    \"$id\": \"#/items\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The Items Schema\",",
+									"    \"required\": [",
+									"      \"id\",",
+									"      \"items\",",
+									"      \"name\"",
+									"    ],",
+									"    \"properties\": {",
+									"      \"id\": {",
+									"        \"$id\": \"#/items/properties/id\",",
+									"        \"type\": \"integer\",",
+									"        \"title\": \"The Id Schema\",",
+									"        \"default\": 0,",
+									"        \"examples\": [",
+									"          1",
+									"        ]",
+									"      },",
+									"      \"items\": {",
+									"        \"$id\": \"#/items/properties/items\",",
+									"        \"type\": \"object\",",
+									"        \"title\": \"The Items Schema\"",
+									"      },",
+									"      \"name\": {",
+									"        \"$id\": \"#/items/properties/name\",",
+									"        \"type\": \"string\",",
+									"        \"title\": \"The Name Schema\",",
+									"        \"default\": \"\",",
+									"        \"examples\": [",
+									"          \"Updated List\"",
+									"        ],",
+									"        \"pattern\": \"^(.*)$\",",
+									"        \"minLength\": 1",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"    var jsonData = pm.response.json();",
+									"    tv4.validate(jsonData, schema);",
+									"    if (tv4.error) {",
+									"        pm.expect(tv4.error.message).to.be.empty();",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server_url}}/lists",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create todolist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6440798a-beff-4b07-82d7-390a9def734c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.environment.set(\"todolist_id\", \"\");",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"    pm.environment.set(\"todolist_id\", jsonData.id);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/lists",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todolist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b9502741-f3f3-43e8-b61d-addc1ae4368b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.test(\"id equals requested\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    expected_value = pm.environment.get(\"todolist_id\");",
+									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update todolist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.test(\"id equals requested\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    expected_value = pm.environment.get(\"todolist_id\");",
+									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
+									"});",
+									"",
+									"postman.setNextRequest(\"list items\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": {{todolist_id}},\n\t\"name\": \"Updated List\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete todolist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.test(\"id equals requested\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    expected_value = pm.environment.get(\"todolist_id\");",
+									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
+									"});",
+									"",
+									"postman.setNextRequest(null);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "list items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}/items",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6440798a-beff-4b07-82d7-390a9def734c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.environment.set(\"item_id\", \"\");",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"    pm.environment.set(\"item_id\", jsonData.id);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"task\": \"task name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}/items",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b9502741-f3f3-43e8-b61d-addc1ae4368b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.test(\"id equals requested\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    expected_value = pm.environment.get(\"item_id\");",
+									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}/items/{{item_id}}",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}",
+								"items",
+								"{{item_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.test(\"id equals requested\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    expected_value = pm.environment.get(\"todolist_id\");",
+									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": {{item_id}},\n\t\"task\": \"Updated task\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}/items/{{item_id}}",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}",
+								"items",
+								"{{item_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Return value is JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Have id\", function () {",
+									"    pm.expect(jsonData).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.test(\"id equals requested\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    expected_value = pm.environment.get(\"todolist_id\");",
+									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
+									"});",
+									"",
+									"postman.setNextRequest(\"delete todolist\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/lists/{{todolist_id}}/items/{{item_id}}",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"lists",
+								"{{todolist_id}}",
+								"items",
+								"{{item_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e017cc10-2645-4b2c-9172-fc71246d9d32",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "94d83da5-6df3-4e12-b7db-ae54bb156e68",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e10ee5b7-ba64-4c99-8a7a-30890d787f2b",
+			"key": "server_url",
+			"value": "http://localhost:8807",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

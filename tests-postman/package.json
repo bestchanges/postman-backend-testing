@@ -1,0 +1,14 @@
+{
+  "name": "postman-tests-runner",
+  "description": "Newman runner to execute postman collection",
+  "version": "1.0.0",
+  "scripts": {
+    "test-local": "newman run postman-backend-testing.postman_collection.json",
+    "test-qa": "newman run postman-backend-testing.postman_collection.json -e ENV-QA.postman_environment.json",
+    "test-stage": "newman run postman-backend-testing.postman_collection.json -e ENV-STAGING.postman_environment.json"
+  },
+  "bundledDependencies": [],
+  "dependencies": {
+    "newman": "^4.5.6"
+  }
+}
