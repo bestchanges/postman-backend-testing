@@ -1,20 +1,21 @@
 venv:
 	python3 -m venv venv
 	./venv/bin/pip install -r requirements.txt
+	echo "Run command '. ./venv/bin/activate' to activate virtualenv"
 
-deploy-qa: venv
+deploy-qa:
 	test ! -f qa.pid
-	./venv/bin/python app.py --port=8810 & echo $$! > qa.pid
+	python app.py --port=8810 & echo $$! > qa.pid
 	sleep 2
 
-deploy-stage: venv
+deploy-stage:
 	test ! -f stage.pid
-	./venv/bin/python app.py --port=8820 & echo $$! > stage.pid
+	python app.py --port=8820 & echo $$! > stage.pid
 	sleep 2
 
 undeploy-qa:
-	kill `cat qa.pid` && rm qa.pid
+	kill `cat qa.pid` ; rm qa.pid
 
 undeploy-stage:
-	kill `cat stage.pid` && rm stage.pid
+	kill `cat stage.pid` ; rm stage.pid
 
