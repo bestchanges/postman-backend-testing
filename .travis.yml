@@ -6,5 +6,6 @@ before_script:
   - make deploy-local
 script:
   - cd tests-postman && make test-local
-# deploy:
-#
+deploy:
+  provider: script
+  script: echo Deploying to QA
