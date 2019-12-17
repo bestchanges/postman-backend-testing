@@ -2,7 +2,12 @@ language: python
 python: 3.7
 install:
   - pip install -r requirements.txt
+before_script:
+  - make run-local
 script:
-  - cd backend && make deploy-qa
-  - cd tests-postman && make test-qa
-  - cd backend && make deploy-stage
+  - cd tests-postman && make test-local
+#deploy:
+#  provider: heroku
+#  api_key:
+#    secure: "YOUR ENCRYPTED API KEY"
+#  app: postman-backend-testing-sample
