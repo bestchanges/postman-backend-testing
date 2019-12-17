@@ -1,6 +1,6 @@
 language: python
 python: 3.7
 script:
-  - make deploy-qa
-  - make integration-tests-qa
-  - make deploy-stage
+  - cd backend && make deploy-qa
+  - cd tests-postman && make test-qa
+  - cd backend && make deploy-stage
