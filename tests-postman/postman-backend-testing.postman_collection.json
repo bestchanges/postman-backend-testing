@@ -16,14 +16,6 @@
 							"script": {
 								"id": "9510dbaf-ca89-4dd4-a33d-976081da7e7a",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
 									"pm.test('Schema is valid', function() {",
 									"    var jsonData = pm.response.json();",
 									"    tv4.validate(jsonData, schemaArrayOf(entitySchema));",
@@ -59,14 +51,6 @@
 							"script": {
 								"id": "6440798a-beff-4b07-82d7-390a9def734c",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
 									"pm.environment.set(\"todolist_id\", \"\");",
 									"",
 									"pm.test(\"Have id\", function () {",
@@ -126,17 +110,8 @@
 							"script": {
 								"id": "b9502741-f3f3-43e8-b61d-addc1ae4368b",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"var jsonData = pm.response.json();",
-									"",
 									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property(\"id\");",
 									"});",
 									"",
@@ -145,7 +120,6 @@
 									"    expected_value = pm.environment.get(\"todolist_id\");",
 									"    pm.expect(jsonData.id).to.be.equals(expected_value);",
 									"});",
-									"",
 									"",
 									"pm.test('Schema is valid', function() {",
 									"    var jsonData = pm.response.json();",
@@ -183,17 +157,8 @@
 							"script": {
 								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"var jsonData = pm.response.json();",
-									"",
 									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property(\"id\");",
 									"});",
 									"",
@@ -257,17 +222,8 @@
 							"script": {
 								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"var jsonData = pm.response.json();",
-									"",
 									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property(\"id\");",
 									"});",
 									"",
@@ -284,6 +240,7 @@
 									"        pm.expect(tv4.error.message).to.be.empty();",
 									"    }",
 									"});",
+									"",
 									"postman.setNextRequest(null);"
 								],
 								"type": "text/javascript"
@@ -366,14 +323,6 @@
 							"script": {
 								"id": "2f329b9b-ac57-4e09-a666-eab9088299bd",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
 									"pm.test('Schema is valid', function() {",
 									"    var jsonData = pm.response.json();",
 									"    tv4.validate(jsonData, schemaArrayOf(entitySchema));",
@@ -411,11 +360,6 @@
 							"script": {
 								"id": "6440798a-beff-4b07-82d7-390a9def734c",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"",
 									"pm.environment.set(\"item_id\", \"\");",
 									"",
 									"pm.test(\"Have id\", function () {",
@@ -478,15 +422,6 @@
 							"script": {
 								"id": "b9502741-f3f3-43e8-b61d-addc1ae4368b",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"",
 									"pm.test(\"Have id\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property(\"id\");",
@@ -536,17 +471,8 @@
 							"script": {
 								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"var jsonData = pm.response.json();",
-									"",
 									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property(\"id\");",
 									"});",
 									"",
@@ -611,17 +537,9 @@
 							"script": {
 								"id": "aae54e3c-6c3e-4af7-82ec-db3a0b0d6d02",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Return value is JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"var jsonData = pm.response.json();",
 									"",
 									"pm.test(\"Have id\", function () {",
+									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData).to.have.property(\"id\");",
 									"});",
 									"",
@@ -742,6 +660,14 @@
 				"id": "94d83da5-6df3-4e12-b7db-ae54bb156e68",
 				"type": "text/javascript",
 				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Return value is JSON\", function () {",
+					"    pm.response.to.be.json;",
+					"});",
+					"",
 					""
 				]
 			}
@@ -749,25 +675,25 @@
 	],
 	"variable": [
 		{
-			"id": "93a28629-db36-407f-8995-865c6ee9b902",
+			"id": "354190b3-b3b9-4ee9-8f71-7ce9f444fb05",
 			"key": "server_url",
 			"value": "http://localhost:8807",
 			"type": "string"
 		},
 		{
-			"id": "8d82884e-5059-4669-bc38-00da2d81d54a",
+			"id": "84260155-7c37-4b81-9edf-45ce28d90492",
 			"key": "todolist_name",
 			"value": "Default todolist",
 			"type": "string"
 		},
 		{
-			"id": "06fcdcb5-769d-4fbf-b183-146ff4cd9a06",
+			"id": "197ecab5-42e9-4fb6-9ec4-f7fbccd3ea4a",
 			"key": "task_name",
 			"value": "default task",
 			"type": "string"
 		},
 		{
-			"id": "9c9ee903-4a97-45a1-9e3f-580e46817e82",
+			"id": "a7ae1c11-fa2e-4566-8589-92501b975045",
 			"key": "task_is_completed",
 			"value": "false",
 			"type": "string"
