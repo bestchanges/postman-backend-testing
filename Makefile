@@ -1,3 +1,8 @@
+venv:
+	python3 -m venv venv
+	./venv/bin/pip install -r requirements.txt
+	echo "Run command '. ./venv/bin/activate' to activate virtualenv"
+
 deploy-qa:
 	(cd backend && make deploy-qa || exit 1)
 

@@ -1,8 +1,3 @@
-venv:
-	python3 -m venv venv
-	./venv/bin/pip install -r requirements.txt
-	echo "Run command '. ./venv/bin/activate' to activate virtualenv"
-
 deploy-qa:
 	test ! -f qa.pid
 	python app.py --port=8810 & echo $$! > qa.pid
