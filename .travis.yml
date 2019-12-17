@@ -3,6 +3,7 @@ python: 3.7
 install:
   - pip install -r requirements.txt
 before_script:
-  - make run-local
+  - make deploy-local
 script:
   - cd tests-postman && make test-local
+# deploy:
